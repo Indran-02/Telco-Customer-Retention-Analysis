@@ -1,0 +1,51 @@
+TELCO CUSTOMER ANALYSIS
+
+Loaded data from kaggle
+Found tht some errors in datatype 'TotalCharge'
+Changed it dtype from object to numeric using to_numeric()
+Checked from any empty rows and those rows for dropped from records. Because those empty rows doesn't make big impact
+
+---Analysis on churn rate
+Calculated churn rate as 26.58%
+Found that Monthly Charges contributes more for churn rate
+ Tenure(months of loyal)'s contribution - 17.8
+ Monthly Charges's contribution - 74.4
+ Total Charges(Life time charges) - 1531.8
+!Even customers who was left out paid more for monthly charge compared to stayed one and their total charge is still less than who stayed.
+
+--Feature Engineering
+Created new column 'High-risk Customer' on Excel using a function(=IF(AND(contract column = 'Month-to-month', tenure's column < 6),'Yes','No'))
+Created a Pivot table in Excel and used Internet service, churn, customer id as row, column, value(count) respectively.
+Is Internet Service results for a churn?
+  DSL - 459 out of 2416 customers
+  Fiber optic - 1297 out of 3096 customers
+  No connection - 113 out of 1520 customers
+!Fiber optic connection was faster than others, but it contributes more churn rate as 41.89%
+ May it happened because of High rate and slow internet or loss of service.
+
+1'st Insight:
+  Even though Fiber Optic is our fastest internet, customers using it are churning at a higher rate than DSL. This suggests either the price is too high or the service is unstable
+
+---Visualizations
+Visualized a box plot for monthly charges distributions by churn
+  Interpretation:
+      ~Monthly charges contributes more chance for churn. Mostly the charges between 55$ to 90$ with the median 80$.
+  !High price contributes chance for churn.
+
+Visualized a bar plot for churn rate by internet service type
+  Interpretation:
+      ~Internet service holders has higher chance for churn with.
+      ~The fiber optic service holders had higher chance of churn compared to DSL service holders.
+  !Need to concentrate on fiber optic service holders.
+Visualized a correlation heat map for the columns with numeric values
+  Interpretation:
+      ~On this map monthly charges contributes to churn.
+      ~Tenure and Total charges has very less contribution to churn.
+
+---Insight thinking
+Created a pivot tabe with Internet service, Tech support and Churn as row, column and value(count) respectively.
+  Interpretation:
+      ~The Churn rate not only because of internet's price, but there is no tech support.
+      ~For 63% customers who had internet service doesn't get technical support.
+  !Need to give technical support
+
